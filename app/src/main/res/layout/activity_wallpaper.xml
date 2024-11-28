@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+    <ImageView
+        android:src="@mipmap/ic_home_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ImageView>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Wallpaper"
+                android:textStyle="italic|bold"
+                android:layout_gravity="center"
+                android:fontFamily="serif"
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"></TextView>
+            
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="76dp"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/ic_back"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+        
+        
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="18dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:layout_height="38dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/all"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="serif"
+                android:text="All"
+                android:background="@drawable/btn_gr"
+                android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatButton>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="0dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/like"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="serif"
+                android:text="Favourite"
+                android:background="@drawable/btn_gray"
+                android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatButton>
+        </LinearLayout>
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="match_parent"/>
+       
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

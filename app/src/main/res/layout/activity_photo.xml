@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#212121"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="76dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/ic_back"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Wallpaper"
+            android:textStyle="italic|bold"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"></TextView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layout"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
+        android:layout_height="390dp">
+        <ImageView
+            android:id="@+id/img"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/fx_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ImageView>
+        <ImageView
+            android:id="@+id/frame"
+            android:background="@mipmap/wx_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ImageView>
+    </FrameLayout>
+
+
+    <FrameLayout
+
+        android:layout_gravity="bottom"
+android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="28dp"
+        android:layout_height="52dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="280dp"
+            android:id="@+id/apply"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="serif"
+            android:text="Save"
+            android:background="@drawable/btn_gr"
+            android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatButton>
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:text="Save successful !"
+            android:textStyle="italic|bold"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"></TextView>
+    </FrameLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="0dp"></Space>
+    
+  <FrameLayout
+      android:id="@+id/bottomRv"
+      android:layout_width="match_parent"
+      android:background="#66000000"
+      android:layout_height="91dp">
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_marginTop="12dp"
+          android:id="@+id/rv"
+          android:layout_marginHorizontal="16dp"
+          android:layout_height="68dp"/>
+  </FrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+    <ImageView
+        android:src="@mipmap/ic_main_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ImageView>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        app:trackColor="#C9C6C6"
+        android:layout_marginBottom="54dp"
+        android:indeterminate="true"
+        app:indicatorColor="#BE20E0"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="42dp"
+        app:trackThickness="6dp"
+        android:layout_height="wrap_content"></com.google.android.material.progressindicator.LinearProgressIndicator>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

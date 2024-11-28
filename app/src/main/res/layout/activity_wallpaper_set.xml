@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/img"
+        tools:src="@mipmap/fx_5"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ImageView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="76dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/ic_back"
+            android:layout_height="match_parent"/>
+
+        <ImageButton
+            android:id="@+id/likeBtn"
+            android:layout_width="76dp"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/ic_set_like_gray"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+    <LinearLayout
+android:id="@+id/bottomMenu"
+        android:layout_gravity="bottom"
+android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="28dp"
+        android:layout_height="52dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/apply"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="serif"
+            android:text="Apply"
+            android:background="@drawable/btn_gr"
+            android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatButton>
+
+        <Space
+            android:layout_width="42dp"
+            android:layout_height="0dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/save"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="serif"
+            android:text="Download"
+            android:background="@drawable/btn_gray"
+            android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/viewDialog"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="28dp"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="42dp"
+            android:layout_height="0dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/btn_gray"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/lock"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="serif"
+                android:text="Set As Lock Screen"
+                android:background="@drawable/btn_gray"
+                android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/home"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="serif"
+                android:text="Set As Home Screen"
+                android:background="@drawable/btn_gray"
+                android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/both"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="serif"
+                android:text="Set Both"
+                android:background="@drawable/btn_gray"
+                android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:id="@+id/cancel"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="serif"
+            android:text="Cancel"
+            android:background="@drawable/btn_gr"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
