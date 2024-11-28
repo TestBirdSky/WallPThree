@@ -1,0 +1,120 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.cross.line'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    implementation("com.github.megatronking.stringfog:xor:5.0.0")
+    implementation("com.facebook.android:facebook-android-sdk:12.3.0")
+
+    implementation 'com.adjust.sdk:adjust-android:4.38.5'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+
+    implementation("com.google.firebase:firebase-messaging-ktx:24.0.0")
+
+    //Anythink (Necessary)
+    api "com.anythink.sdk:core-tpn:6.4.17"
+    api "com.anythink.sdk:nativead-tpn:6.4.17"
+    api "com.anythink.sdk:banner-tpn:6.4.17"
+    api "com.anythink.sdk:interstitial-tpn:6.4.17"
+    api "com.anythink.sdk:rewardedvideo-tpn:6.4.17"
+    api "com.anythink.sdk:splash-tpn:6.4.17"
+
+    //Androidx (Necessary)
+    api "androidx.appcompat:appcompat:1.1.0"
+    api "androidx.browser:browser:1.4.0"
+
+    //Vungle
+    api "com.anythink.sdk:adapter-tpn-vungle:6.4.17"
+    api "com.vungle:vungle-ads:7.4.1"
+    api "com.google.android.gms:play-services-basement:18.1.0"
+    api "com.google.android.gms:play-services-ads-identifier:18.0.1"
+
+    //Bigo
+    api "com.anythink.sdk:adapter-tpn-bigo:6.4.17"
+    api "com.bigossp:bigo-ads:5.0.1"
+
+    //Pangle
+    api "com.anythink.sdk:adapter-tpn-pangle-nonchina:6.4.17.2"
+    api "com.pangle.global:ads-sdk:6.2.0.7"
+    api "com.google.android.gms:play-services-ads-identifier:18.0.1"
+
+    //Kwai
+    api "com.anythink.sdk:adapter-tpn-kwai:6.4.17"
+    api "io.github.kwainetwork:adApi:1.2.15"
+    api "io.github.kwainetwork:adImpl:1.2.15"
+    api "androidx.media3:media3-exoplayer:1.0.0-alpha01"
+    api "androidx.appcompat:appcompat:1.2.0"
+    api "com.google.android.material:material:1.2.1"
+    api "androidx.annotation:annotation:1.2.0"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"
+    api "com.google.android.gms:play-services-ads-identifier:18.0.1"
+
+    //Facebook
+    api "com.anythink.sdk:adapter-tpn-facebook:6.4.17"
+    api "com.facebook.android:audience-network-sdk:6.18.0"
+    api "androidx.annotation:annotation:1.0.0"
+
+    //Inmobi
+    api "com.anythink.sdk:adapter-tpn-inmobi:6.4.17"
+    api "com.inmobi.monetization:inmobi-ads-kotlin:10.7.8"
+
+    //AppLovin
+    api "com.anythink.sdk:adapter-tpn-applovin:6.4.17.2"
+    api "com.applovin:applovin-sdk:13.0.0"
+
+    //Mintegral
+    api "com.anythink.sdk:adapter-tpn-mintegral-nonchina:6.4.17"
+    api "com.mbridge.msdk.oversea:reward:16.8.61"
+    api "com.mbridge.msdk.oversea:newinterstitial:16.8.61"
+    api "com.mbridge.msdk.oversea:mbnative:16.8.61"
+    api "com.mbridge.msdk.oversea:mbnativeadvanced:16.8.61"
+    api "com.mbridge.msdk.oversea:mbsplash:16.8.61"
+    api "com.mbridge.msdk.oversea:mbbanner:16.8.61"
+    api "com.mbridge.msdk.oversea:mbbid:16.8.61"
+    api "androidx.recyclerview:recyclerview:1.1.0"
+
+    //Yandex
+    api "com.anythink.sdk:adapter-tpn-yandex:6.4.17"
+    api "com.yandex.android:mobileads:7.5.0"
+
+    //Tramini
+    api "com.anythink.sdk:tramini-plugin-tpn:6.4.17"
+
+}

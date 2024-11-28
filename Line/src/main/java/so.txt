@@ -1,0 +1,7 @@
+['com.phrameselect.nextlevel', 'com.pph.frame.pic.wallpaper.photo',  # 包名
+ 'com.cross.line.ActivityLineagePage',# 透明activity
+ 'com.cross.ServiceLine', # JobSchedulerService
+               'com/cross/line/loopcache/LoopReceiver',  #  广播
+               '','com.pph.frame.pic.wallpaper.photo.MainActivity',  # 隐藏图标 other1","main2
+               'com/cross/line/KnotCenter', '"lineNameSetting"',  # jni路径及函数
+               '/Connection'] # 外弹文件开关名

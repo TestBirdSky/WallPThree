@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -16,10 +16,18 @@
         android:theme="@style/Theme.PhotoframeWallpaper1120"
         tools:targetApi="31">
 
-        <activity android:name=".PhotoActivity" android:exported="false" />
-        <activity android:name=".HomeActivity" android:exported="false" />
-        <activity android:name=".WallpaperSetActivity" android:exported="false" />
-        <activity android:name=".WallpaperActivity" android:exported="false" />
+        <activity
+            android:name=".PhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WallpaperSetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WallpaperActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

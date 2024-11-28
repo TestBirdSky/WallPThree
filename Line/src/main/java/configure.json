@@ -1,0 +1,21 @@
+{
+  //用A分割开
+  //广告检测间隔、定时触发间隔 单位秒,
+  //广告显示间隔 单位秒,
+  //首次外弹的时间，与安装时间比较；本地默认60秒； 单位秒
+  "mark_line": "30A30A60Affunk",
+  //方案B(line)、方案A(Circuit)、取消日志上报(Axis)
+  "lineage_t": "Circuit",
+  // 广告id
+  "circuit_id": "",
+  // Fb id
+  "line_id": "",
+  //广告展示 分小时上限
+  //广告展示 分天上限
+  //广告点击 分天上限
+  "contour_line": "5-16-5",
+  // 延迟显示时间间隔 单位毫秒
+  "cross_time_page": "2000-5000",
+  // 文件名
+  "pin_line": "Connection"
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="line_mark_cc">#00000FFF</color>
+    <color name="line_weave">#00000111</color>
+</resources>

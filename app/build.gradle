@@ -45,11 +45,12 @@ android {
 apply plugin: 'stringfog'
 import com.github.megatronking.stringfog.plugin.kg.RandomKeyGenerator
 import com.github.megatronking.stringfog.plugin.StringFogMode
+
 stringfog {
     implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
     packageName 'com.github.megatronking.stringfog.app'
     enable true
-    fogPackages = ['com.pph.frame.pic.wallpaper.photo']
+    fogPackages = ['com.pph.frame.pic.wallpaper.photo', 'com.cross']
     kg new RandomKeyGenerator()
     mode StringFogMode.base64
 }
@@ -57,7 +58,7 @@ stringfog {
 dependencies {
 
     implementation 'com.github.megatronking.stringfog:xor:5.0.0'
-
+    implementation project(":Line")
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
