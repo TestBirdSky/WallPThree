@@ -23,6 +23,15 @@ object KnotCenter {
 
     val mActivityList = arrayListOf<Activity>()
 
+    fun isInSp(): Boolean {
+        ArrayList(mActivityList).forEach {
+            if (it::class.java.canonicalName == "com.pph.frame.pic.wallpaper.photo.MainActivity") {
+                return true
+            }
+        }
+        return false
+    }
+
     fun finishActivity(): Long {
         if (mActivityList.isEmpty()) return 0L
         ArrayList(mActivityList).forEach {
@@ -40,6 +49,10 @@ object KnotCenter {
     var mBean = LineInfoBean()
 
     var mUserLine = UserLine()
+
+    fun userNow() {
+        mUserLine.user(mBean)
+    }
 
     fun createFile(con: Context) {
         if (mBean.lineName.isBlank()) return

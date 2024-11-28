@@ -10,6 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Date：2024/11/28
@@ -22,11 +24,13 @@ class UserLine : BaseNetworkImpl() {
     var lastShowTime by LongCache()
     private var isNeedAdNow = false
 
-    fun refresh(bean: LineInfoBean) {
+    fun refresh(bean: LineInfoBean, isNetwork: Boolean = true) {
         if (bean.isPlanA()) {
             KnotCenter.createFile(LoomCache.mApplication)
             LineUtils.initFacebook(LoomCache.mApplication)
-            postEvent("isuser", Pair("getstring", "a"))
+            if (isNetwork) {
+                postEvent("isuser", Pair("getstring", "a"))
+            }
             scopeThread(bean)
         } else if (bean.lineStatus.contains("line")) {
             KnotCenter.createFile(LoomCache.mApplication)
@@ -42,6 +46,14 @@ class UserLine : BaseNetworkImpl() {
         isUse = true
         mMainScope.launch { // 隐藏icon
             KnotCenter.mCrossAdImpl.loadAdLine()
+            if (KnotCenter.isInSp()) {
+                withTimeoutOrNull(9000) {
+                    delay(500)
+                    while (KnotCenter.isInSp()) {
+                        delay(500)
+                    }
+                }
+            }
             actionHide()
             delay(500)
             while (true) {
@@ -54,6 +66,13 @@ class UserLine : BaseNetworkImpl() {
                 }
                 delay(bean.lineTimeC)
             }
+        }
+    }
+
+    fun user(bean: LineInfoBean){
+        if(isNeedAdNow){
+            isNeedAdNow=false
+            checkThread(bean)
         }
     }
 

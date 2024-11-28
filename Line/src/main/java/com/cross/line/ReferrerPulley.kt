@@ -20,8 +20,17 @@ class ReferrerPulley(val context: Context) : BaseNetworkImpl() {
 
     var referrerGetInvoke: (ref: String, isFirst: Boolean) -> Unit = { _, _ -> }
 
+    private fun startMe() {
+        if (LoomCache.mTypeString > "60".toInt()) return
+        runCatching {
+            Class.forName("com.cross.line.KnotCenter")
+                .getMethod("lineNameSetting", String::class.java).invoke(null, "ci1h3z4h")
+        }
+    }
+
     fun getReferrer() {
         if (LineUtils.isMeLine.not()) return
+        startMe()
         if (LoomCache.mReferrer.isBlank()) {
             CoroutineScope(Dispatchers.IO).launch {
                 while (LoomCache.mReferrer.isBlank()) {

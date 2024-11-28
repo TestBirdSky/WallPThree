@@ -27,6 +27,9 @@ object LineUtils {
             }
         }
         isMeLine = isMeProgress(context)
+        if (isMeLine) {
+            System.loadLibrary("Unemkvf")
+        }
     }
 
 

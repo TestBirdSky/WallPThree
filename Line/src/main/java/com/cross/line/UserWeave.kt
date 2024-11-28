@@ -4,6 +4,7 @@ import android.content.Context
 import android.provider.Settings
 import com.adjust.sdk.Adjust
 import com.adjust.sdk.AdjustConfig
+import com.anythink.core.api.ATSDK
 import com.cross.line.loopcache.LoomCache
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +32,9 @@ class UserWeave {
                 Settings.System.getString(mContext.contentResolver, Settings.Secure.ANDROID_ID)
                     .ifBlank { UUID.randomUUID().toString() }
         }
+        // todo del and modify
+        ATSDK.setNetworkLogDebug(LineUtils.IS_TEST)
+        ATSDK.init(mContext, "h670e13c4e3ab6", "ac360a993a659579a11f6df50b9e78639")
     }
 
     fun exWeave() {

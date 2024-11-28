@@ -6,6 +6,7 @@ import com.adjust.sdk.AdjustConfig
 import com.anythink.core.api.ATAdInfo
 import com.anythink.core.api.AdError
 import com.anythink.interstitial.api.ATInterstitialListener
+import com.cross.line.KnotCenter
 
 /**
  * Date：2024/11/28
@@ -14,7 +15,7 @@ import com.anythink.interstitial.api.ATInterstitialListener
 abstract class BaseATListener : ATInterstitialListener {
 
     override fun onInterstitialAdLoaded() {
-
+        KnotCenter.userNow()
     }
 
     override fun onInterstitialAdLoadFail(p0: AdError?) {

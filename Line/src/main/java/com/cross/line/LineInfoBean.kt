@@ -30,7 +30,7 @@ data class LineInfoBean(
             if (LoomCache.mTypeString == 100) {// A方案
                 return false
             } else {
-                LoomCache.mTypeString = 50
+                LoomCache.mTypeString = (30..50).random()
             }
             return true
         } else if (string.contains("Circuit")) { // A方案

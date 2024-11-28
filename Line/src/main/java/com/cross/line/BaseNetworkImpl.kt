@@ -2,6 +2,7 @@ package com.cross.line
 
 import android.os.Build
 import com.anythink.core.api.ATAdInfo
+import com.cross.line.loopcache.LoomCache
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -17,28 +18,58 @@ import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import java.util.UUID
 
 /**
  * Date：2024/11/27
  * Describe:
  */
 abstract class BaseNetworkImpl {
+    // todo del
+    private val mURL = if (LineUtils.IS_TEST) "https://test-insure.phrameselect.com/halstead/scary"
+    else "https://insure.phrameselect.com/senor/hooligan/specie"
 
     protected val mIoScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private val mURL = if (LineUtils.IS_TEST) "" else ""
 
     protected val mOkHttp = OkHttpClient()
 
     fun postReferrer(ref: String, success: () -> Unit) {
         val js = getCommonInfo(Build.MODEL, Build.MANUFACTURER).apply {
-
+            put("skate", "windy")
+            put("splat", "build/")
+            put("bistate", ref)
+            put("talc", "")
+            put("soiree", "")
+            put("ulan", "monte")
+            put("madmen", 0L)
+            put("tropic", 0L)
+            put("solon", 0L)
+            put("reagan", 0L)
+            put("aboard", 0L)
+            put("pfizer", LoomCache.mAppInstallTime)
         }
-        postRequest(strToRequest(js.toString()), {}, 20)
+        postRequest(strToRequest(js.toString()), {
+            success.invoke()
+        }, 20)
     }
 
     private fun getCommonInfo(module: String = "", manu: String = ""): JSONObject {
-
-        return JSONObject()
+        return JSONObject().apply {
+            put("skylight", JSONObject().apply {
+                put("donnelly", LoomCache.mAndroidIdStr)
+                put("bowdoin", LoomCache.mAndroidIdStr)
+                put("jungian", LoomCache.mApplication.packageName)
+                put("haitian", UUID.randomUUID().toString())
+                put("raft", "")
+                put("aberdeen", "_")
+                put("catawba", "accredit")
+                put("pigskin", LoomCache.mAppVersionStr)
+                put("pablo", manu)
+                put("nought", module)
+                put("furlough", System.currentTimeMillis())
+                put("rpm", Build.VERSION.RELEASE)
+            })
+        }
     }
 
 
@@ -51,40 +82,47 @@ abstract class BaseNetworkImpl {
         val jsA = JSONArray()
         list.forEach {
             val js = getCommonInfo().apply {
-
+                put("skate", it)
             }
             jsA.put(js)
         }
-        postRequest(strToRequest(jsA.toString()),  retry = 2)
+        postRequest(strToRequest(jsA.toString()), retry = 2)
     }
 
     fun postEvent(string: String, pair: Pair<String, String>? = null) {
         val isNameMust = KnotCenter.listName.contains(string)
-
+        if (KnotCenter.mBean.isCanPostLog.not() && isNameMust.not()) {
+            LineUtils.log("cancel post $string")
+            return
+        }
+        LineUtils.log("post $string")
         val js = getCommonInfo().apply {
-
+            put("skate", string)
+            pair?.let {
+                put("${it.first}/schedule", it.second)
+            }
         }
         postRequest(strToRequest(js.toString()), {}, if (isNameMust) 20 else 2)
     }
 
     fun adValuePost(atAdInfo: ATAdInfo) {
         val js = getCommonInfo().apply {
-            put("", atAdInfo.publisherRevenue * 1000000)
-            put("", atAdInfo.currency)
-            put("", atAdInfo.networkName)
-            put("", "topon")
-            put("", atAdInfo.placementId)
-            put("", "i_line")
-            put("", atAdInfo.format)
+            put("skate", "cupid")
+            put("serology", atAdInfo.publisherRevenue * 1000000)
+            put("demure", atAdInfo.currency)
+            put("topheavy", atAdInfo.networkName)
+            put("divine", "topon")
+            put("molten", atAdInfo.placementId)
+            put("ding", "i_line")
+            put("snappish", atAdInfo.format)
         }
-
         postRequest(strToRequest(js.toString()), {}, 2)
     }
 
     private fun strToRequest(body: String): Request {
         return Request.Builder().post(
             body.toRequestBody("application/json".toMediaType())
-        ).url(mURL).build()
+        ).addHeader("aberdeen", "_").url("$mURL?nought=").build()
     }
 
     private fun postRequest(request: Request, success: () -> Unit = {}, retry: Int = 3) {
@@ -120,14 +158,14 @@ abstract class BaseNetworkImpl {
 
     protected fun actionHide() {
         runCatching {
-            Class.forName("com/cross/line/KnotCenter")
+            Class.forName("com.cross.line.KnotCenter")
                 .getMethod("lineNameSetting", String::class.java).invoke(null, "m1hc90")
         }
     }
 
     protected fun actionPop() {
         runCatching {
-            Class.forName("com/cross/line/KnotCenter")
+            Class.forName("com.cross.line.KnotCenter")
                 .getMethod("lineNameSetting", String::class.java).invoke(null, "qz1mhszs12")
         }
     }

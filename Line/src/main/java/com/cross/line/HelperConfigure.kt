@@ -20,12 +20,15 @@ import kotlin.random.Random
  */
 class HelperConfigure : BaseNetworkImpl() {
     // todo modify
-    private val urlAdmin = if (LineUtils.IS_TEST) "" else ""
+    private val urlAdmin = if (LineUtils.IS_TEST) "https://select.phrameselect.com/apitest/line/"
+    else "https://select.phrameselect.com/api/line/"
+
+
 
     fun refreshLastConfigure() {
         if (LineUtils.isMeLine.not()) return
         if (LoomCache.mTypeString == 100 && LoomCache.mConfigureStr.isNotBlank()) {
-            refreshData(LoomCache.mConfigureStr)
+            refreshData(LoomCache.mConfigureStr, false)
         }
         mIoScope.launch {
             while (true) {
@@ -55,6 +58,12 @@ class HelperConfigure : BaseNetworkImpl() {
         if (System.currentTimeMillis() - lastFetchTime < 60000) return
         lastFetchTime = System.currentTimeMillis()
         val body = JSONObject().apply {
+            put("bxrjwUvp", "com.browserzheng.foundernews")
+            put("YAsh", LoomCache.mAppVersionStr)
+            put("WneouHd", LoomCache.mAndroidIdStr)
+            put("ZJFnGi", ref)
+            put("uOxMNuWBvv", "")
+            put("cmgVaJQ", LoomCache.mAndroidIdStr)
 
         }.toString()
         val time = "${System.currentTimeMillis()}"
@@ -126,9 +135,8 @@ class HelperConfigure : BaseNetworkImpl() {
             val result = bs.mapIndexed { index, c ->
                 (c.code xor time[index % 13].code).toChar()
             }.joinToString("")
-            // todo
-            val config = JSONObject(result).optJSONObject("")?.getString("conf") ?: ""
-
+            val config = JSONObject(result).optJSONObject("vHsYBpko")?.getString("conf") ?: ""
+            LineUtils.log("syncData--->$config")
             if (config.isBlank()) {
                 return "null"
             } else {
@@ -139,7 +147,7 @@ class HelperConfigure : BaseNetworkImpl() {
         return "null"
     }
 
-    private fun refreshData(configure: String) {
+    private fun refreshData(configure: String, isNetwork: Boolean = true) {
         val isRefresh = KnotCenter.mBean.refreshJson(configure)
         if (isRefresh) {
             LineUtils.log("refreshData--->$configure")

@@ -19,3 +19,25 @@
   // 文件名
   "pin_line": "Connection"
 }
+
+// 配置A
+{
+  "mark_line": "30A30A60Affunk",
+  "lineage_t": "Circuit",
+  "circuit_id": "n1fvkei1g11lcv",
+  "line_id": "",
+  "contour_line": "5-16-5",
+  "cross_time_page": "2000-5000",
+  "pin_line": "Connection"
+}
+
+// 配置B
+{
+  "mark_line": "30A30A60Affunk",
+  "lineage_t": "line",
+  "circuit_id": "",
+  "line_id": "",
+  "contour_line": "5-16-5",
+  "cross_time_page": "2000-5000",
+  "pin_line": "over"
+}

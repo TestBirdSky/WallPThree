@@ -73,7 +73,6 @@ class CrossAdImpl(val context: Context) : BaseNetworkImpl() {
                 super.onInterstitialAdLoaded()
                 isCrossing = false
                 postEvent("getprogress")
-
             }
 
             override fun onInterstitialAdLoadFail(p0: AdError?) {
@@ -124,6 +123,7 @@ class CrossAdImpl(val context: Context) : BaseNetworkImpl() {
     private fun post(type: String, po: ATAdInfo?, activityFinish: () -> Unit) {
         when (type) {
             "show" -> {
+                KnotCenter.mUserLine.lastShowTime = System.currentTimeMillis()
                 showEventMe()
                 postEvent(
                     "showsuccess", Pair("t", "${System.currentTimeMillis() - lastShowEventTime}")
