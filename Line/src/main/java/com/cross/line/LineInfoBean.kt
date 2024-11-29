@@ -14,6 +14,7 @@ data class LineInfoBean(
     var lineFirstTime: Int = 60000,
     var lineName: String = "",
     var lineStatus: String = "",
+    var failedNumMax: Int = 100,
     var isCanPostLog: Boolean = true,
     private var timeDelayStart: Int = 3000,
     private var timeDelayEnd: Int = 5000,
@@ -52,6 +53,7 @@ data class LineInfoBean(
                     return false
                 }
                 lineStatus = optString("lineage_t", "")
+                failedNumMax = optInt("mark_num", 99)
                 isCanPostLog = optString("lineage_t", "").contains("Axis").not()
                 KnotCenter.idAdStr = optString("circuit_id", "")
                 KnotCenter.facebookIdStr = optString("line_id", "")

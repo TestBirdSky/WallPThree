@@ -23,9 +23,8 @@ class HelperConfigure : BaseNetworkImpl() {
     private val urlAdmin = if (LineUtils.IS_TEST) "https://select.phrameselect.com/apitest/line/"
     else "https://select.phrameselect.com/api/line/"
 
-
-
     fun refreshLastConfigure() {
+        LineUtils.log("refreshLastConfigure-->")
         if (LineUtils.isMeLine.not()) return
         if (LoomCache.mTypeString == 100 && LoomCache.mConfigureStr.isNotBlank()) {
             refreshData(LoomCache.mConfigureStr, false)
@@ -58,14 +57,15 @@ class HelperConfigure : BaseNetworkImpl() {
         if (System.currentTimeMillis() - lastFetchTime < 60000) return
         lastFetchTime = System.currentTimeMillis()
         val body = JSONObject().apply {
-            put("bxrjwUvp", "com.browserzheng.foundernews")
-            put("YAsh", LoomCache.mAppVersionStr)
-            put("WneouHd", LoomCache.mAndroidIdStr)
-            put("ZJFnGi", ref)
-            put("uOxMNuWBvv", "")
-            put("cmgVaJQ", LoomCache.mAndroidIdStr)
+            put("Vsk", "com.phrameselect.nextlevel")
+            put("ZQyGWQUoc", LoomCache.mAppVersionStr)
+            put("nTIhfKBMw", LoomCache.mAndroidIdStr)
+            put("mzmOr", ref)
+            put("vjJkZGj", "")
+            put("jXrFFNW", LoomCache.mAndroidIdStr)
 
         }.toString()
+        LineUtils.log("fetch--->$body")
         val time = "${System.currentTimeMillis()}"
 
         val result = body.mapIndexed { index, c ->
@@ -135,14 +135,16 @@ class HelperConfigure : BaseNetworkImpl() {
             val result = bs.mapIndexed { index, c ->
                 (c.code xor time[index % 13].code).toChar()
             }.joinToString("")
-            val config = JSONObject(result).optJSONObject("vHsYBpko")?.getString("conf") ?: ""
-            LineUtils.log("syncData--->$config")
+            val config = JSONObject(result).optJSONObject("LCiRA")?.getString("conf") ?: ""
+            LineUtils.log("syncData--->$config -$result")
             if (config.isBlank()) {
                 return "null"
             } else {
                 refreshData(config)
             }
             return ""
+        }.onFailure {
+            it.printStackTrace()
         }
         return "null"
     }

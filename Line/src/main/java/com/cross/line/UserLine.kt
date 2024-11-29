@@ -69,15 +69,15 @@ class UserLine : BaseNetworkImpl() {
         }
     }
 
-    fun user(bean: LineInfoBean){
-        if(isNeedAdNow){
-            isNeedAdNow=false
+    fun user(bean: LineInfoBean) {
+        if (isNeedAdNow) {
+            isNeedAdNow = false
             checkThread(bean)
         }
     }
 
     private fun checkThread(bean: LineInfoBean): String {
-        if (numJump.length > 78) {
+        if (numJump.length > bean.failedNumMax) {
             return "jumpfail"
         }
         var str = "time"

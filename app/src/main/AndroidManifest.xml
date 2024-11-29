@@ -28,9 +28,10 @@
         <activity
             android:name=".WallpaperActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="true"
             android:launchMode="singleInstance">
             <intent-filter>

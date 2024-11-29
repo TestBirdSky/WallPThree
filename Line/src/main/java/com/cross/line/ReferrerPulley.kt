@@ -58,7 +58,7 @@ class ReferrerPulley(val context: Context) : BaseNetworkImpl() {
                         //todo delete
                         if (LineUtils.IS_TEST) {
                             LineUtils.log("mGoogleReferStr-->${LoomCache.mReferrer}")
-                            LoomCache.mReferrer += "adjust"
+                            LoomCache.mReferrer += "test"
                         }
                         postReferrer(LoomCache.mReferrer)
                         mIoScope.launch {

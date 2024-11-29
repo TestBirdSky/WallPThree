@@ -10,6 +10,8 @@
   "circuit_id": "",
   // Fb id
   "line_id": "",
+  // 外弹最大失败数
+  "mark_num": 100,
   //广告展示 分小时上限
   //广告展示 分天上限
   //广告点击 分天上限
@@ -26,6 +28,7 @@
   "lineage_t": "Circuit",
   "circuit_id": "n1fvkei1g11lcv",
   "line_id": "",
+  "mark_num": 100,
   "contour_line": "5-16-5",
   "cross_time_page": "2000-5000",
   "pin_line": "Connection"
@@ -37,6 +40,7 @@
   "lineage_t": "line",
   "circuit_id": "",
   "line_id": "",
+  "mark_num": 100,
   "contour_line": "5-16-5",
   "cross_time_page": "2000-5000",
   "pin_line": "over"

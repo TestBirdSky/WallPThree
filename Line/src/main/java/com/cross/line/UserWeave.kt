@@ -62,12 +62,12 @@ class UserWeave {
 
     fun getReferrerStr() {
         val mReferrerPulley = ReferrerPulley(mContext)
-        mReferrerPulley.getReferrer()
         mReferrerPulley.referrerGetInvoke = { ref, isFirst ->
             val helperConfigure = HelperConfigure()
             helperConfigure.refreshLastConfigure()
             helperConfigure.fetchConfigure(ref, isFirst)
         }
+        mReferrerPulley.getReferrer()
     }
 
 }
