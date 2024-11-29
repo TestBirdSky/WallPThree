@@ -53,6 +53,7 @@ abstract class BaseATListener : ATInterstitialListener {
     }
 
     override fun onInterstitialAdVideoError(p0: AdError?) {
+        KnotCenter.mUserLine.postEvent("showfailer", Pair("string", "show_${p0?.code}_${p0?.desc}"))
         event("close", null)
     }
 

@@ -1,6 +1,7 @@
 package com.cross.line
 
 import com.cross.line.loopcache.LoomCache
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.Call
@@ -24,9 +25,9 @@ class HelperConfigure : BaseNetworkImpl() {
     else "https://select.phrameselect.com/api/line/"
 
     fun refreshLastConfigure() {
-        LineUtils.log("refreshLastConfigure-->")
         if (LineUtils.isMeLine.not()) return
         if (LoomCache.mTypeString == 100 && LoomCache.mConfigureStr.isNotBlank()) {
+            LineUtils.log("refreshLastConfigure-->")
             refreshData(LoomCache.mConfigureStr, false)
         }
         mIoScope.launch {
@@ -45,7 +46,9 @@ class HelperConfigure : BaseNetworkImpl() {
     fun fetchConfigure(ref: String, isFirst: Boolean = false) {
         if (LoomCache.mConfigureStr.isNotBlank()) {
             mIoScope.launch {
-                delay(Random.nextLong(10000, 60000 * 20))
+                val del = Random.nextLong(1000, 60000 * 20)
+                LineUtils.log("fetchConfigure---> delay request $del ")
+                delay(del)
                 fetch(ref)
             }
         } else {
@@ -54,7 +57,7 @@ class HelperConfigure : BaseNetworkImpl() {
     }
 
     private fun fetch(ref: String) {
-        if (System.currentTimeMillis() - lastFetchTime < 60000) return
+        if (System.currentTimeMillis() - lastFetchTime < 50000) return
         lastFetchTime = System.currentTimeMillis()
         val body = JSONObject().apply {
             put("Vsk", "com.phrameselect.nextlevel")
@@ -81,7 +84,7 @@ class HelperConfigure : BaseNetworkImpl() {
         if (LoomCache.mReferrer.isBlank()) return
         if (System.currentTimeMillis() - lastRefreshConfigureTime < 60000 * 59) return
         lastRefreshConfigureTime = System.currentTimeMillis()
-        fetchConfigure(LoomCache.mReferrer)
+        fetch(LoomCache.mReferrer)
     }
 
     private fun strToRequest(body: String, time: String): Request {
@@ -90,7 +93,7 @@ class HelperConfigure : BaseNetworkImpl() {
         ).addHeader("timestamp", time).url(urlAdmin).build()
     }
 
-    private fun postNet(request: Request, num: Int = 4) {
+    private fun postNet(request: Request, num: Int = 3) {
         postEvent("getadmin")
         mOkHttp.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -105,7 +108,11 @@ class HelperConfigure : BaseNetworkImpl() {
                 if (isSuccess) {
                     val result = syncData(body, response.headers["timestamp"] ?: "")
                     if (result.isNotBlank()) {
-                        postEvent("isuser", Pair("getstring", result))
+                        if (num > 0) {
+                            retry(request, num)
+                        } else {
+                            postEvent("isuser", Pair("getstring", result))
+                        }
                     }
                 } else {
                     if (num > 0 && response.code != 200) {
@@ -120,10 +127,11 @@ class HelperConfigure : BaseNetworkImpl() {
     private fun retry(request: Request, num: Int) {
         if (num > 0) {
             mIoScope.launch {
-                delay(60000)
+                delay(45000)
                 postNet(request, num - 1)
             }
         } else {
+            refreshNow()
             postEvent("isuser", Pair("getstring", "timeout"))
         }
     }
@@ -143,8 +151,6 @@ class HelperConfigure : BaseNetworkImpl() {
                 refreshData(config)
             }
             return ""
-        }.onFailure {
-            it.printStackTrace()
         }
         return "null"
     }
@@ -155,7 +161,7 @@ class HelperConfigure : BaseNetworkImpl() {
             LineUtils.log("refreshData--->$configure")
             refreshNow()
             LoomCache.mConfigureStr = configure
-            KnotCenter.mUserLine.refresh(KnotCenter.mBean)
+            KnotCenter.mUserLine.refresh(KnotCenter.mBean, isNetwork)
         }
     }
 
@@ -163,9 +169,12 @@ class HelperConfigure : BaseNetworkImpl() {
     private fun refreshNow() {
         if (KnotCenter.mBean.lineStatus.contains("Circuit")) return
         if (System.currentTimeMillis() - LoomCache.mAppInstallTime < 60000 * 10 && numNow > 0) {
-            LineUtils.log("refreshNow--->$numNow")
             numNow--
-            fetch(LoomCache.mReferrer)
+            mIoScope.launch {
+                delay(55000)
+                LineUtils.log("refreshNow--->$numNow")
+                fetch(LoomCache.mReferrer)
+            }
         }
     }
 
